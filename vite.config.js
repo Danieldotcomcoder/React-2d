@@ -10,5 +10,7 @@ export default defineConfig({
       restart: ['src/main.js'], // Specify files or globs that trigger restarts
     }),
   ],
+
+  base: '/React-2d',
   
 })
