@@ -13,7 +13,7 @@ const Knearestneighbor = () => {
 
   const generateBalls = () => {
     let positions = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
       let firstNumber = Math.floor(Math.random() * (1150 - 1000 + 1)) + 1000;
       let secondNumber = Math.floor(Math.random() * (150 - 50 + 1)) + 50;
       positions.push([firstNumber, secondNumber, [255, 0, 0]]);
@@ -23,7 +23,7 @@ const Knearestneighbor = () => {
       let firstNumber3 = Math.floor(Math.random() * (450 - 300 + 1)) + 300;
       let secondNumber3 = Math.floor(Math.random() * (150 - 50 + 1)) + 50;
       positions.push([firstNumber3, secondNumber3, [0, 0, 255]]);
-      let firstNumber4 = Math.floor(Math.random() * (0 - 200 + 1)) + 200;
+      let firstNumber4 = Math.floor(Math.random() * (50 - 200 + 1)) + 200;
       let secondNumber4 = Math.floor(Math.random() * (150 - 50 + 1)) + 50;
       positions.push([firstNumber4, secondNumber4, [0, 0, 0]]);
       let firstNumber5 = Math.floor(Math.random() * (150 - 250 + 1)) + 250;
@@ -99,14 +99,14 @@ const Knearestneighbor = () => {
         width: 1200,
         height: 600,
         wireframes: false,
-        background: 'lightgrey',
+        background: 'lightblue',
       },
     });
 
-    var ground = Bodies.rectangle(0, 600, 2400, 10, { isStatic: true });
-    var ceiling = Bodies.rectangle(400, 0, 1600, 10, { isStatic: true });
-    var leftWall = Bodies.rectangle(0, 300, 10, 600, { isStatic: true });
-    var rightWall = Bodies.rectangle(1200, 300, 10, 600, { isStatic: true });
+    var ground = Bodies.rectangle(600, 600, 1200, 10, { isStatic: true, render: { fillStyle: 'purple' } });
+    var ceiling = Bodies.rectangle(400, 0, 1600, 10,  { isStatic: true, render: { fillStyle: 'purple' } });
+    var leftWall = Bodies.rectangle(0, 300, 10, 600,  { isStatic: true, render: { fillStyle: 'purple' } });
+    var rightWall = Bodies.rectangle(1200, 300, 10, 600,  { isStatic: true, render: { fillStyle: 'purple' } });
 
     World.add(engine.world, [ground, ceiling, leftWall, rightWall]);
 
@@ -117,7 +117,7 @@ const Knearestneighbor = () => {
       setColorName(rgbToColorName(newBall));
       let prediction = knn.predict(newBall);
       
-      const smallCircle = Bodies.circle(mouseposition[0], mouseposition[1], 10, {
+      const smallCircle = Bodies.circle(mouseposition[0], mouseposition[1], 5, {
         restitution: 0,
         render: {
           fillStyle: rgbToHex(newBall),
@@ -139,7 +139,7 @@ const Knearestneighbor = () => {
         let dy = prediction[1] - smallCircle.position.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
     
-        if (distance < 50) { 
+        if (distance < 20) { 
          
           Body.setPosition(smallCircle, { x: prediction[0], y: prediction[1] });
           return;
@@ -155,7 +155,7 @@ const Knearestneighbor = () => {
     });
 
     balls.forEach((pos) => {
-      const smallCircle = Bodies.circle(pos[0], pos[1], 10, {
+      const smallCircle = Bodies.circle(pos[0], pos[1], 5, {
         render: {
           fillStyle: rgbToHex(pos[2]),
         },
@@ -183,6 +183,7 @@ const Knearestneighbor = () => {
 
   return (
     <div>
+        <h2>Click down ⬇️ to add more balls</h2>
      <div className='color'> {colorName.toUpperCase()}</div>
       <div ref={sceneRef} />
       <div className='color'> {colorName.toUpperCase()}</div>
