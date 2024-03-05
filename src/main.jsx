@@ -3,21 +3,21 @@ import ReactDOM from 'react-dom/client';
 import Comp from './components/Comp.jsx';
 import Knearestneighbor from './components/Knearestneighbor.jsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
-const router = createBrowserRouter([
-  {
-    path: '/React-2d',
-    element: <Comp />,
-  },
-  {
-    path: '/React-2d/Knn',
-    element: <Knearestneighbor />,
-  },
-]);
+const App = () => (
+  <HashRouter>
+    <Routes>
+      <Route path="/" element={<Comp />} />
+      <Route path="/Knn" element={<Knearestneighbor />} />
+    </Routes>
+  </HashRouter>
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
+
+export default App

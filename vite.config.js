@@ -11,6 +11,6 @@ export default defineConfig({
     }),
   ],
 
-  base: '/React-2d',
+  base: '/React-2d/',
   
 })
