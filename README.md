@@ -10,6 +10,10 @@ This project is a visualization of the K-Nearest Neighbors (KNN) classification 
 - Interactive interface to add new data points.
 - Color-coded data points for easy distinction between classes.
 
+## Live Link
+
+https://danieldotcomcoder.github.io/React-2d/#/knn
+
 ## Installation and Setup
 
 1. Clone the repository:
